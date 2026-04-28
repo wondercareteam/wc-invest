@@ -1,0 +1,23 @@
+# OS junk
+.DS_Store
+__MACOSX/
+Thumbs.db
+
+# Editor
+.vscode/
+.idea/
+*.swp
+
+# Secrets — never commit service account keys
+*.json.key
+*-sa.json
+service-account*.json
+.env*
+
+# Firebase
+.firebase/
+firebase-debug.log
+firebase-debug.*.log
+
+# Source archives
+*.zip

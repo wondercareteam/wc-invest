@@ -1,0 +1,1386 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>WonderCare — The Future of Luxury Asset Protection</title>
+<meta name="description" content="WonderCare: the tech-first insurance platform crafted for luxury asset owners, addressing the $13B gap in coverage." />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy-deep: #060e26;
+    --navy: #0a1638;
+    --navy-mid: #0f1d44;
+    --navy-light: #1a2a5c;
+    --red: #e63946;
+    --red-soft: #ff5963;
+    --white: #ffffff;
+    --off-white: #e9edf5;
+    --muted: #9aa3bd;
+    --line: rgba(255,255,255,0.08);
+    --max: 1240px;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    background: var(--navy-deep);
+    color: var(--off-white);
+    line-height: 1.6;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  a { color: inherit; text-decoration: none; }
+
+  img { max-width: 100%; display: block; }
+
+  .container {
+    max-width: var(--max);
+    margin: 0 auto;
+    padding: 0 32px;
+  }
+
+  /* ---------- NAV ---------- */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    padding: 18px 32px;
+    background: rgba(6, 14, 38, 0.85);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border-bottom: 1px solid var(--line);
+    transition: padding 0.3s ease;
+  }
+  nav .nav-inner {
+    max-width: var(--max);
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .brand {
+    display: flex;
+    align-items: center;
+    height: 36px;
+  }
+  .brand img {
+    height: 36px;
+    width: auto;
+    display: block;
+    mix-blend-mode: screen;
+  }
+  .nav-links {
+    display: flex;
+    gap: 30px;
+    font-size: 14px;
+    color: var(--muted);
+    font-weight: 500;
+  }
+  .nav-links a:hover { color: var(--white); }
+  .cta-btn {
+    display: inline-block;
+    padding: 10px 22px;
+    background: var(--red);
+    color: var(--white);
+    border-radius: 4px;
+    font-weight: 600;
+    font-size: 14px;
+    letter-spacing: 0.04em;
+    transition: background 0.2s, transform 0.2s;
+  }
+  .cta-btn:hover { background: var(--red-soft); transform: translateY(-1px); }
+
+  @media (max-width: 720px) {
+    .nav-links { display: none; }
+  }
+
+  /* ---------- HERO ---------- */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+    padding: 120px 0 80px;
+  }
+  .hero::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse at 70% 50%, rgba(230,57,70,0.15), transparent 55%),
+      radial-gradient(ellipse at 20% 30%, rgba(26,42,92,0.6), transparent 50%),
+      linear-gradient(135deg, var(--navy-deep) 0%, var(--navy) 60%, var(--navy-mid) 100%);
+    z-index: 0;
+  }
+  .hero::after {
+    content: "";
+    position: absolute;
+    right: -100px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 700px;
+    height: 700px;
+    background: radial-gradient(circle, rgba(255,255,255,0.04) 0%, transparent 60%);
+    z-index: 0;
+    pointer-events: none;
+  }
+  .hero .container { position: relative; z-index: 1; }
+  .hero-grid {
+    display: grid;
+    grid-template-columns: 1.4fr 1fr;
+    gap: 60px;
+    align-items: center;
+  }
+  .hero-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 8px 16px;
+    background: rgba(230,57,70,0.12);
+    border: 1px solid rgba(230,57,70,0.3);
+    border-radius: 100px;
+    color: var(--red-soft);
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    margin-bottom: 28px;
+  }
+  .hero-eyebrow::before {
+    content: "";
+    width: 6px;
+    height: 6px;
+    background: var(--red);
+    border-radius: 50%;
+    box-shadow: 0 0 10px var(--red);
+  }
+  h1.hero-title {
+    font-size: clamp(40px, 6vw, 76px);
+    line-height: 1.05;
+    font-weight: 700;
+    color: var(--white);
+    letter-spacing: -0.02em;
+    margin-bottom: 28px;
+  }
+  .hero-title .accent {
+    color: var(--white);
+    background: linear-gradient(120deg, #ffffff 0%, #b9c4e3 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  .hero-sub {
+    font-size: clamp(17px, 1.5vw, 20px);
+    color: var(--off-white);
+    line-height: 1.5;
+    max-width: 580px;
+    margin-bottom: 40px;
+    font-weight: 300;
+  }
+  .hero-stats {
+    display: flex;
+    gap: 40px;
+    margin-top: 50px;
+    padding-top: 32px;
+    border-top: 1px solid var(--line);
+  }
+  .hero-stat .num {
+    font-size: 32px;
+    font-weight: 700;
+    color: var(--white);
+    letter-spacing: -0.02em;
+    margin-bottom: 4px;
+  }
+  .hero-stat .num .red { color: var(--red); }
+  .hero-stat .label {
+    font-size: 12px;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    font-weight: 500;
+  }
+  .hero-image {
+    position: relative;
+    border-radius: 6px;
+    overflow: hidden;
+    aspect-ratio: 4/5;
+    box-shadow: 0 30px 80px rgba(0,0,0,0.5);
+  }
+  .hero-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .hero-image::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, transparent 50%, rgba(6,14,38,0.7) 100%);
+  }
+
+  @media (max-width: 880px) {
+    .hero-grid { grid-template-columns: 1fr; }
+    .hero-image { max-width: 360px; margin: 0 auto; }
+    .hero-stats { flex-wrap: wrap; gap: 28px; }
+  }
+
+  /* ---------- SECTION ---------- */
+  section {
+    padding: 110px 0;
+    position: relative;
+  }
+  .section-eyebrow {
+    display: inline-block;
+    color: var(--red);
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+    padding-bottom: 12px;
+    border-bottom: 2px solid var(--red);
+  }
+  h2 {
+    font-size: clamp(34px, 4vw, 52px);
+    color: var(--white);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    line-height: 1.1;
+    margin-bottom: 24px;
+  }
+  h3 {
+    font-size: 22px;
+    color: var(--white);
+    font-weight: 600;
+    margin-bottom: 12px;
+  }
+  .lead {
+    font-size: 19px;
+    color: var(--off-white);
+    max-width: 720px;
+    font-weight: 300;
+    line-height: 1.6;
+  }
+
+  /* ---------- PROBLEM ---------- */
+  .problem {
+    background: linear-gradient(180deg, var(--navy-deep) 0%, var(--navy) 100%);
+  }
+  .problem-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: start;
+    margin-top: 60px;
+  }
+  .pull-quote {
+    border-left: 3px solid var(--red);
+    padding: 4px 0 4px 28px;
+    margin-bottom: 32px;
+  }
+  .pull-quote .label {
+    font-size: 12px;
+    color: var(--red);
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+    display: block;
+  }
+  .pull-quote p {
+    font-size: 20px;
+    color: var(--white);
+    font-weight: 500;
+    font-style: italic;
+    line-height: 1.4;
+  }
+  .stat-badge {
+    background: linear-gradient(140deg, rgba(230,57,70,0.1), rgba(230,57,70,0.02));
+    border: 1px solid rgba(230,57,70,0.25);
+    border-radius: 8px;
+    padding: 36px;
+    text-align: center;
+  }
+  .stat-badge .big {
+    font-size: 88px;
+    font-weight: 800;
+    color: var(--red);
+    line-height: 1;
+    letter-spacing: -0.03em;
+    margin-bottom: 12px;
+  }
+  .stat-badge p {
+    color: var(--off-white);
+    font-size: 16px;
+    line-height: 1.5;
+  }
+  @media (max-width: 880px) {
+    .problem-grid { grid-template-columns: 1fr; gap: 40px; }
+  }
+
+  /* ---------- SOLUTION ---------- */
+  .solution {
+    background: var(--navy-deep);
+  }
+  .pillars {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+    margin-top: 60px;
+  }
+  .pillar {
+    background: linear-gradient(180deg, rgba(26,42,92,0.4), rgba(26,42,92,0.1));
+    border: 1px solid var(--line);
+    padding: 38px 34px;
+    border-radius: 4px;
+    transition: transform 0.3s, border-color 0.3s, background 0.3s;
+    position: relative;
+    overflow: hidden;
+  }
+  .pillar::before {
+    content: "";
+    position: absolute;
+    top: 0; left: 0;
+    width: 60px;
+    height: 2px;
+    background: var(--red);
+    transition: width 0.4s ease;
+  }
+  .pillar:hover {
+    transform: translateY(-4px);
+    border-color: rgba(230,57,70,0.4);
+    background: linear-gradient(180deg, rgba(230,57,70,0.05), rgba(26,42,92,0.1));
+  }
+  .pillar:hover::before { width: 100%; }
+  .pillar h3 {
+    color: var(--red-soft);
+    font-style: italic;
+    font-size: 22px;
+    margin-bottom: 14px;
+  }
+  .pillar p {
+    color: var(--off-white);
+    font-size: 16px;
+    line-height: 1.6;
+  }
+  @media (max-width: 720px) {
+    .pillars { grid-template-columns: 1fr; }
+  }
+
+  /* ---------- TRACTION ---------- */
+  .traction {
+    background: linear-gradient(180deg, var(--navy-deep) 0%, var(--navy-mid) 100%);
+  }
+  .traction-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 70px;
+    align-items: center;
+    margin-top: 50px;
+  }
+  .traction-img {
+    border-radius: 6px;
+    overflow: hidden;
+    box-shadow: 0 25px 70px rgba(0,0,0,0.5);
+    aspect-ratio: 1/1;
+  }
+  .traction-img img { width: 100%; height: 100%; object-fit: cover; }
+  .stat-row {
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+    margin: 36px 0;
+  }
+  .stat-row .item {
+    display: flex;
+    align-items: baseline;
+    gap: 18px;
+    padding: 16px 0;
+    border-bottom: 1px solid var(--line);
+  }
+  .stat-row .item .num {
+    font-size: 42px;
+    font-weight: 700;
+    color: var(--red);
+    letter-spacing: -0.02em;
+    min-width: 110px;
+    line-height: 1;
+  }
+  .stat-row .item .text {
+    color: var(--off-white);
+    font-size: 16px;
+  }
+  .badge {
+    display: inline-block;
+    padding: 8px 16px;
+    background: rgba(230,57,70,0.12);
+    border: 1px solid rgba(230,57,70,0.3);
+    border-radius: 4px;
+    color: var(--red-soft);
+    font-size: 13px;
+    font-weight: 600;
+    margin-bottom: 14px;
+    letter-spacing: 0.04em;
+  }
+  @media (max-width: 880px) {
+    .traction-grid { grid-template-columns: 1fr; gap: 40px; }
+  }
+
+  /* ---------- MOAT ---------- */
+  .moat { background: var(--navy-deep); }
+  .moat-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 70px;
+    align-items: center;
+    margin-top: 50px;
+  }
+  .moat-grid.reverse .text { order: 2; }
+  .partner-list {
+    margin-top: 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+  }
+  .partner-list .item {
+    padding: 22px 26px;
+    background: rgba(26,42,92,0.3);
+    border-left: 3px solid var(--red);
+    border-radius: 0 6px 6px 0;
+  }
+  .partner-list .item strong {
+    color: var(--white);
+    font-size: 17px;
+    display: block;
+    margin-bottom: 4px;
+  }
+  .partner-list .item span {
+    color: var(--muted);
+    font-size: 15px;
+  }
+  .moat-img {
+    border-radius: 6px;
+    overflow: hidden;
+    box-shadow: 0 25px 70px rgba(0,0,0,0.5);
+    aspect-ratio: 4/5;
+  }
+  .moat-img img { width: 100%; height: 100%; object-fit: cover; }
+  @media (max-width: 880px) {
+    .moat-grid, .moat-grid.reverse { grid-template-columns: 1fr; gap: 40px; }
+    .moat-grid.reverse .text { order: 0; }
+  }
+
+  /* ---------- KEVIN ---------- */
+  .kevin {
+    background: linear-gradient(180deg, var(--navy-deep) 0%, var(--navy) 100%);
+    position: relative;
+  }
+  .kevin-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 70px;
+    align-items: center;
+    margin-top: 40px;
+  }
+  .kevin-img {
+    border-radius: 6px;
+    overflow: hidden;
+    box-shadow: 0 25px 80px rgba(0,0,0,0.6);
+    background: var(--navy);
+    padding: 14px;
+  }
+  .kevin-img img { width: 100%; height: auto; display: block; border-radius: 4px; }
+  .kevin-points {
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+    margin-top: 32px;
+  }
+  .kevin-point {
+    padding-left: 24px;
+    position: relative;
+  }
+  .kevin-point::before {
+    content: "";
+    position: absolute;
+    left: 0; top: 10px;
+    width: 8px; height: 8px;
+    background: var(--red);
+    border-radius: 50%;
+    box-shadow: 0 0 12px var(--red);
+  }
+  .kevin-point strong { color: var(--red-soft); font-weight: 600; }
+  .kevin-point p {
+    color: var(--off-white);
+    font-size: 16px;
+    line-height: 1.55;
+  }
+  @media (max-width: 880px) {
+    .kevin-grid { grid-template-columns: 1fr; gap: 40px; }
+    .kevin-img { max-width: 480px; margin: 0 auto; }
+  }
+
+  /* ---------- PIPELINE ---------- */
+  .pipeline { background: var(--navy-deep); }
+  .pipe-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: 60px;
+    align-items: start;
+    margin-top: 50px;
+  }
+  .pipe-col h4 {
+    color: var(--red);
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid rgba(230,57,70,0.3);
+  }
+  .pipe-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .pipe-list li {
+    color: var(--white);
+    font-size: 17px;
+    font-weight: 500;
+    padding: 12px 0;
+    border-bottom: 1px solid var(--line);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .pipe-list li::before {
+    content: "✓";
+    color: var(--red);
+    font-weight: 700;
+    font-size: 14px;
+  }
+  .pipe-list.interest li::before { content: "→"; color: var(--muted); }
+  .funnel-img {
+    border-radius: 6px;
+    overflow: hidden;
+    box-shadow: 0 25px 70px rgba(0,0,0,0.5);
+    background: var(--navy);
+  }
+  .funnel-img img { width: 100%; height: auto; }
+  .funnel-callout {
+    background: rgba(230,57,70,0.08);
+    border: 1px solid rgba(230,57,70,0.25);
+    border-radius: 6px;
+    padding: 22px 24px;
+    margin-top: 22px;
+  }
+  .funnel-callout p {
+    color: var(--off-white);
+    font-size: 15px;
+    line-height: 1.55;
+    margin-bottom: 8px;
+  }
+  .funnel-callout p:last-child { margin-bottom: 0; }
+  .funnel-callout strong { color: var(--red-soft); }
+  @media (max-width: 880px) {
+    .pipe-grid { grid-template-columns: 1fr; gap: 40px; }
+  }
+
+  /* ---------- TAM ---------- */
+  .tam {
+    background: linear-gradient(180deg, var(--navy) 0%, var(--navy-deep) 100%);
+  }
+  .tam-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 70px;
+    align-items: center;
+    margin-top: 50px;
+  }
+  .tam-img {
+    border-radius: 6px;
+    overflow: hidden;
+    box-shadow: 0 25px 70px rgba(0,0,0,0.5);
+    aspect-ratio: 1/1;
+  }
+  .tam-img img { width: 100%; height: 100%; object-fit: cover; }
+  .markets {
+    display: flex;
+    flex-direction: column;
+    gap: 26px;
+    margin-top: 28px;
+  }
+  .market {
+    padding: 26px 28px;
+    background: rgba(26,42,92,0.35);
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    transition: border-color 0.3s, transform 0.3s;
+  }
+  .market:hover {
+    border-color: rgba(230,57,70,0.4);
+    transform: translateX(4px);
+  }
+  .market h4 {
+    color: var(--white);
+    font-size: 16px;
+    margin-bottom: 8px;
+    font-weight: 600;
+  }
+  .market p {
+    color: var(--off-white);
+    font-size: 15px;
+    line-height: 1.5;
+  }
+  .market .figure { color: var(--red-soft); font-weight: 600; }
+  @media (max-width: 880px) {
+    .tam-grid { grid-template-columns: 1fr; gap: 40px; }
+  }
+
+  /* ---------- ROADMAP ---------- */
+  .roadmap { background: var(--navy-deep); }
+  .roadmap-grid {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 70px;
+    align-items: center;
+    margin-top: 50px;
+  }
+  .roadmap-img {
+    border-radius: 6px;
+    overflow: hidden;
+    box-shadow: 0 25px 70px rgba(0,0,0,0.5);
+    background: var(--navy);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .roadmap-img img {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+  .roadmap-list {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    margin-top: 32px;
+  }
+  .roadmap-item {
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+  }
+  .roadmap-num {
+    width: 44px;
+    height: 44px;
+    flex-shrink: 0;
+    border: 1.5px solid var(--red);
+    color: var(--red);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 16px;
+  }
+  .roadmap-item h4 { color: var(--white); font-size: 18px; margin-bottom: 6px; font-weight: 600; }
+  .roadmap-item p { color: var(--off-white); font-size: 15px; line-height: 1.55; }
+  @media (max-width: 880px) {
+    .roadmap-grid { grid-template-columns: 1fr; gap: 40px; }
+  }
+
+  /* ---------- TEAM ---------- */
+  .team { background: linear-gradient(180deg, var(--navy-deep) 0%, var(--navy) 100%); }
+  .team-intro {
+    max-width: 760px;
+    color: var(--off-white);
+    font-size: 17px;
+    margin: 16px 0 60px;
+    font-weight: 300;
+    line-height: 1.6;
+  }
+  .team-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 28px;
+  }
+  .member {
+    text-align: left;
+  }
+  .member-photo {
+    aspect-ratio: 1/1;
+    border-radius: 6px;
+    overflow: hidden;
+    margin-bottom: 18px;
+    background: var(--navy-mid);
+    position: relative;
+  }
+  .member-photo img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+  }
+  .member:hover .member-photo img { transform: scale(1.05); }
+  .member-photo::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    pointer-events: none;
+  }
+  .member h4 {
+    color: var(--white);
+    font-size: 17px;
+    font-weight: 600;
+    margin-bottom: 4px;
+  }
+  .member .role {
+    color: var(--red-soft);
+    font-size: 14px;
+    font-weight: 500;
+    margin-bottom: 2px;
+  }
+  .member .prev {
+    color: var(--muted);
+    font-size: 13px;
+    font-style: italic;
+  }
+  @media (max-width: 980px) {
+    .team-grid { grid-template-columns: repeat(3, 1fr); }
+  }
+  @media (max-width: 720px) {
+    .team-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+
+  /* ---------- RAISE ---------- */
+  .raise {
+    background: var(--navy-deep);
+    position: relative;
+    overflow: hidden;
+  }
+  .raise::before {
+    content: "";
+    position: absolute;
+    top: -200px; right: -200px;
+    width: 600px; height: 600px;
+    background: radial-gradient(circle, rgba(230,57,70,0.18), transparent 65%);
+    pointer-events: none;
+  }
+  .raise .container { position: relative; z-index: 1; }
+  .raise-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 70px;
+    align-items: center;
+    margin-top: 40px;
+  }
+  .raise-num {
+    font-size: clamp(80px, 12vw, 160px);
+    font-weight: 800;
+    line-height: 0.95;
+    background: linear-gradient(135deg, var(--white) 0%, var(--red-soft) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    letter-spacing: -0.04em;
+    margin-bottom: 8px;
+  }
+  .raise-tag {
+    color: var(--white);
+    font-size: 24px;
+    font-weight: 600;
+    margin-bottom: 8px;
+  }
+  .raise-sub {
+    color: var(--muted);
+    font-size: 16px;
+    margin-bottom: 36px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+  .use-funds h4 {
+    color: var(--red);
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin-bottom: 24px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid rgba(230,57,70,0.3);
+  }
+  .use-funds ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+  .use-funds li {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    padding: 14px 0;
+    border-bottom: 1px solid var(--line);
+    color: var(--white);
+    font-size: 16px;
+    line-height: 1.5;
+  }
+  .use-funds li::before {
+    content: "→";
+    color: var(--red);
+    font-weight: 700;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+  .use-funds li strong { color: var(--red-soft); font-weight: 600; }
+  @media (max-width: 880px) {
+    .raise-grid { grid-template-columns: 1fr; gap: 40px; }
+  }
+
+  /* ---------- CTA / FOOTER ---------- */
+  .closing {
+    padding: 130px 0 100px;
+    text-align: center;
+    background: radial-gradient(ellipse at center, var(--navy) 0%, var(--navy-deep) 100%);
+  }
+  .closing-logo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 30px;
+  }
+  .closing-logo img {
+    width: clamp(220px, 32vw, 320px);
+    height: auto;
+    display: block;
+    mix-blend-mode: screen;
+  }
+  .closing-divider {
+    width: 60px;
+    height: 2px;
+    background: var(--red);
+    margin: 30px auto 30px;
+  }
+  .closing h2 {
+    font-size: clamp(28px, 4vw, 44px);
+    margin-bottom: 24px;
+  }
+  .closing p {
+    color: var(--off-white);
+    font-size: 18px;
+    max-width: 580px;
+    margin: 0 auto 40px;
+    line-height: 1.6;
+    font-weight: 300;
+  }
+  .closing .actions {
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  .btn-primary {
+    padding: 16px 36px;
+    background: var(--red);
+    color: var(--white);
+    border-radius: 4px;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    transition: background 0.2s, transform 0.2s;
+    font-size: 15px;
+  }
+  .btn-primary:hover { background: var(--red-soft); transform: translateY(-2px); }
+  .btn-secondary {
+    padding: 16px 36px;
+    border: 1px solid rgba(255,255,255,0.25);
+    color: var(--white);
+    border-radius: 4px;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    transition: border-color 0.2s, background 0.2s;
+    font-size: 15px;
+  }
+  .btn-secondary:hover { border-color: var(--white); background: rgba(255,255,255,0.05); }
+
+  footer {
+    padding: 32px 0;
+    border-top: 1px solid var(--line);
+    text-align: center;
+    color: var(--muted);
+    font-size: 13px;
+    background: var(--navy-deep);
+  }
+  footer p { margin: 4px 0; }
+  footer a:hover { color: var(--white); }
+
+  /* ---------- ANIMATIONS ---------- */
+  .reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+  }
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a href="#top" class="brand" aria-label="WonderCare home">
+      <img src="Wondercare_Logo-Full-Horiz-RGB-OnDark.jpg" alt="WonderCare — Luxury Insurance" />
+    </a>
+    <div class="nav-links">
+      <a href="#problem">Problem</a>
+      <a href="#solution">Solution</a>
+      <a href="#traction">Traction</a>
+      <a href="#team">Team</a>
+      <a href="#raise">The Raise</a>
+    </div>
+    <a href="mailto:james@wondercare.com?subject=WonderCare%20Investment%20Inquiry" class="cta-btn">Invest</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="top">
+  <div class="container">
+    <div class="hero-grid">
+      <div>
+        <span class="hero-eyebrow">Friends &amp; Enthusiasts Round · Apr 2026</span>
+        <h1 class="hero-title">
+          The Future of<br />
+          <span class="accent">Luxury Asset Protection.</span>
+        </h1>
+        <p class="hero-sub">
+          The tech-first insurance platform crafted for luxury asset owners — addressing the
+          <strong style="color: var(--red-soft); font-weight: 600;">$13B gap</strong>
+          in coverage that legacy insurers refuse to fix.
+        </p>
+        <div class="hero-stats">
+          <div class="hero-stat">
+            <div class="num"><span class="red">$25M+</span></div>
+            <div class="label">Total Insured Value</div>
+          </div>
+          <div class="hero-stat">
+            <div class="num">800+</div>
+            <div class="label">Watches Insured</div>
+          </div>
+          <div class="hero-stat">
+            <div class="num">11M+</div>
+            <div class="label">Reach via Kevin O'Leary</div>
+          </div>
+        </div>
+      </div>
+      <div class="hero-image">
+        <img src="Slide4.png" alt="Luxury Omega Speedmaster" />
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROBLEM -->
+<section class="problem" id="problem">
+  <div class="container">
+    <span class="section-eyebrow reveal">The Problem</span>
+    <h2 class="reveal">Insurance is failing<br />owners of luxury assets.</h2>
+    <p class="lead reveal">
+      Typical insurance assigns <em>static policies</em> to <em>dynamic assets</em>. They travel.
+      They often appreciate. Yet they are treated as a line item on a stationary homeowners policy.
+    </p>
+
+    <div class="problem-grid">
+      <div class="reveal">
+        <div class="pull-quote">
+          <span class="label">Problem</span>
+          <p>Homeowners policies treat high-value assets as generic "personal property."</p>
+        </div>
+        <div class="pull-quote">
+          <span class="label">Result</span>
+          <p>Restricted sub-limits and depreciated payouts that ignore market reality.</p>
+        </div>
+        <p style="color: var(--off-white); font-size: 16px; margin-top: 24px; line-height: 1.65;">
+          WonderCare's market-value protection (up to <strong style="color: var(--red-soft);">150%</strong>)
+          is purpose-built for the luxury asset market — where values rise rather than just fall.
+        </p>
+      </div>
+      <div class="stat-badge reveal">
+        <div class="big">70%</div>
+        <p>of luxury watch owners have <strong>no real coverage</strong> — either uninsured or relying on restrictive homeowners' riders that fail during travel or market price increases.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SOLUTION -->
+<section class="solution" id="solution">
+  <div class="container">
+    <span class="section-eyebrow reveal">The Solution</span>
+    <h2 class="reveal">WonderCare solves this.</h2>
+    <p class="lead reveal">Four pillars of coverage built specifically for owners of appreciating, mobile, high-value assets.</p>
+    <div class="pillars">
+      <div class="pillar reveal">
+        <h3>Standalone Policy</h3>
+        <p>Watch claims on a homeowners rider can spike premiums or cancel coverage. WonderCare is standalone — your home insurance is never at risk.</p>
+      </div>
+      <div class="pillar reveal">
+        <h3>Worldwide All-Risk Coverage</h3>
+        <p>Instead of named perils inside-the-home only, WonderCare covers theft, loss, accidental damage, and mysterious disappearance — anywhere in the world.</p>
+      </div>
+      <div class="pillar reveal">
+        <h3>Market-Value Protection (up to 150%)</h3>
+        <p>Legacy policies pay depreciated Actual Cash Value. WonderCare pays full market value — with a 150% buffer for secondary market appreciation.</p>
+      </div>
+      <div class="pillar reveal">
+        <h3>$0 Deductible</h3>
+        <p>Homeowners policies carry $500–$5,000 out-of-pocket deductibles. WonderCare delivers true first-dollar protection.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TRACTION -->
+<section class="traction" id="traction">
+  <div class="container">
+    <div class="traction-grid">
+      <div class="reveal">
+        <span class="section-eyebrow">Proven Velocity</span>
+        <h2>Six months in.<br />Already moving fast.</h2>
+        <span class="badge">Launched Q4 2025</span>
+        <div class="stat-row">
+          <div class="item">
+            <div class="num">$25M+</div>
+            <div class="text">Total Insured Value (TIV) protected</div>
+          </div>
+          <div class="item">
+            <div class="num">800+</div>
+            <div class="text">Luxury watches insured</div>
+          </div>
+          <div class="item">
+            <div class="num">600+</div>
+            <div class="text">Organic leads per Kevin O'Leary Instagram post</div>
+          </div>
+        </div>
+        <p style="color: var(--off-white); font-size: 16px; line-height: 1.65;">
+          <strong style="color: var(--red-soft);">January 2026:</strong> successful Jewelry category launch — proving rapid vertical expansion across luxury asset classes.
+        </p>
+      </div>
+      <div class="traction-img reveal">
+        <img src="Slide4.png" alt="Luxury watch detail" />
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MOAT -->
+<section class="moat">
+  <div class="container">
+    <div class="moat-grid">
+      <div class="text reveal">
+        <span class="section-eyebrow">The Competitive Moat</span>
+        <h2>Exclusive retail distribution.</h2>
+        <p class="lead">Own the point of acquisition. Where the world's most valuable assets change hands — WonderCare is already there.</p>
+        <div class="partner-list">
+          <div class="item">
+            <strong>The 1916 Company</strong>
+            <span>First-ever exclusive partnership for the global retail giant.</span>
+          </div>
+          <div class="item">
+            <strong>Phillips Auctioneers</strong>
+            <span>Exclusive provider for the world's leading watch auction house.</span>
+          </div>
+          <div class="item">
+            <strong>Embedded POS</strong>
+            <span>Protection offered at the exact moment of acquisition — eliminating the "wait and see" risk.</span>
+          </div>
+        </div>
+      </div>
+      <div class="moat-img reveal">
+        <img src="Slide5.jpg" alt="Luxury timepiece on wrist" />
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- KEVIN -->
+<section class="kevin">
+  <div class="container">
+    <div class="kevin-grid">
+      <div class="kevin-img reveal">
+        <img src="Slide7.png" alt="Kevin O'Leary at watch retail" />
+      </div>
+      <div class="reveal">
+        <span class="section-eyebrow">The Magic</span>
+        <h2>Kevin O'Leary.</h2>
+        <p class="lead">An unfair strategic advantage — locked in.</p>
+        <div class="kevin-points">
+          <div class="kevin-point">
+            <p><strong>11M+ followers across social platforms</strong> — generating 600+ organic leads per post at zero CAC.</p>
+          </div>
+          <div class="kevin-point">
+            <p><strong>Proprietary C-Suite network</strong> — across every major watch brand and luxury goods company. When we need a meeting, Kevin gets us the exact right people every time.</p>
+          </div>
+          <div class="kevin-point">
+            <p><strong>The 1916 Company</strong> — Chubb pursued this for years. Kevin delivered it for WonderCare on day one.</p>
+          </div>
+          <div class="kevin-point">
+            <p><strong>Phillips Auctioneers</strong> — Kevin's promotion drove a $5M+ lift on a single watch, sealing the exclusive partnership.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PIPELINE -->
+<section class="pipeline">
+  <div class="container">
+    <span class="section-eyebrow reveal">Pipeline &amp; Pending Partners</span>
+    <h2 class="reveal">Massive top of funnel.<br />Interested parties stacking up.</h2>
+    <div class="pipe-grid">
+      <div class="reveal">
+        <div class="pipe-col" style="margin-bottom: 40px;">
+          <h4>Signed Partners</h4>
+          <ul class="pipe-list">
+            <li>The 1916 Company</li>
+            <li>Phillips Auctioneers</li>
+            <li>Precision Watches</li>
+            <li>CD Peacock</li>
+            <li>Timepiece Grading Specialists</li>
+          </ul>
+        </div>
+        <div class="pipe-col">
+          <h4>Interested Parties</h4>
+          <ul class="pipe-list interest">
+            <li>Rolex</li>
+            <li>FP Journe</li>
+            <li>Sediqqi</li>
+            <li>Tiffany &amp; the broader LVMH</li>
+          </ul>
+        </div>
+      </div>
+      <div class="reveal">
+        <div class="funnel-img">
+          <img src="Slide8.png" alt="Pipeline growth Q4 2025" />
+        </div>
+        <div class="funnel-callout">
+          <p><strong>Our biggest challenge:</strong> too much lead flow. We can't catch all the incoming users properly.</p>
+          <p><strong>Our first use of funds:</strong> a conversion engine to capture the demand that's already arriving.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TAM -->
+<section class="tam">
+  <div class="container">
+    <div class="tam-grid">
+      <div class="reveal">
+        <span class="section-eyebrow">Total Addressable Market</span>
+        <h2>A $13B gap.<br />And it's growing.</h2>
+        <div class="markets">
+          <div class="market">
+            <h4>Global Jewelry &amp; Watch Insurance</h4>
+            <p>Estimated at <span class="figure">$4.5B – $5.3B</span> in 2024–2025. Expected to reach <span class="figure">$10.4B by 2034</span>.</p>
+          </div>
+          <div class="market">
+            <h4>Fine Art, Wine, Collectibles &amp; Handbags</h4>
+            <p>Valued at <span class="figure">$6.4B (2024)</span>, projected to reach <span class="figure">$11B by 2034</span>.</p>
+          </div>
+          <div class="market">
+            <h4>Global Pre-Owned Luxury Watch Market</h4>
+            <p>Valued at approximately <span class="figure">$1.5B – $2B</span> annually. Secondary market — private sales, auctions, peer-to-peer — chronically under-insured.</p>
+          </div>
+        </div>
+      </div>
+      <div class="tam-img reveal">
+        <img src="TAM.png" alt="Luxury asset protection market" />
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ROADMAP -->
+<section class="roadmap">
+  <div class="container">
+    <div class="roadmap-grid">
+      <div class="reveal">
+        <span class="section-eyebrow">Roadmap</span>
+        <h2>Beyond watches.<br />Beyond the US.</h2>
+        <div class="roadmap-list">
+          <div class="roadmap-item">
+            <div class="roadmap-num">01</div>
+            <div>
+              <h4>Every luxury asset</h4>
+              <p>Watches, jewelry, designer handbags, fine art, collectibles, investment-grade wine, and more.</p>
+            </div>
+          </div>
+          <div class="roadmap-item">
+            <div class="roadmap-num">02</div>
+            <div>
+              <h4>More service lines</h4>
+              <p>Appraisals, service, repairs, vaulting and more — the full luxury asset lifecycle.</p>
+            </div>
+          </div>
+          <div class="roadmap-item">
+            <div class="roadmap-num">03</div>
+            <div>
+              <h4>Every geography</h4>
+              <p>Expansion into the Middle East, Asia Pacific, EU, and the rest of the world.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="roadmap-img reveal">
+        <img src="Slide9.jpg" alt="Luxury watch close up" />
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TEAM -->
+<section class="team" id="team">
+  <div class="container">
+    <span class="section-eyebrow reveal">Our Team</span>
+    <h2 class="reveal">Founders, operators, and<br />insurance veterans.</h2>
+    <p class="team-intro reveal">
+      WonderCare was started by Kevin O'Leary and insurance veterans Benji Markoff and Carl Niedbala.
+      James Walter was brought in to run day-to-day operations, and Christina Conway leads insurance operations and client experience.
+    </p>
+    <div class="team-grid">
+      <div class="member reveal">
+        <div class="member-photo"><img src="Kevin.png" alt="Kevin O'Leary" /></div>
+        <h4>Kevin O'Leary</h4>
+        <div class="role">Chairman</div>
+      </div>
+      <div class="member reveal">
+        <div class="member-photo"><img src="James.png" alt="James Walter" /></div>
+        <h4>James Walter</h4>
+        <div class="role">CEO</div>
+        <div class="prev">Ex Microsoft</div>
+      </div>
+      <div class="member reveal">
+        <div class="member-photo"><img src="Carl.png" alt="Carl Niedbala" /></div>
+        <h4>Carl Niedbala</h4>
+        <div class="role">Chief Product Officer</div>
+        <div class="prev">Ex FounderShield</div>
+      </div>
+      <div class="member reveal">
+        <div class="member-photo"><img src="Asya.png" alt="Asya Baghdasaryan" /></div>
+        <h4>Asya Baghdasaryan</h4>
+        <div class="role">Head of Client Relations</div>
+        <div class="prev">Ex Tiffany &amp; Bucherer</div>
+      </div>
+      <div class="member reveal">
+        <div class="member-photo"><img src="Benji.png" alt="Benji Markoff" /></div>
+        <h4>Benji Markoff</h4>
+        <div class="role">Co-founder + Advisor</div>
+        <div class="prev">Ex Scale Underwriting</div>
+      </div>
+      <div class="member reveal">
+        <div class="member-photo"><img src="Christina.png" alt="Christina Conway" /></div>
+        <h4>Christina Conway</h4>
+        <div class="role">Head of Insurance Ops</div>
+        <div class="prev">Ex FounderShield</div>
+      </div>
+      <div class="member reveal">
+        <div class="member-photo"><img src="Paul.png" alt="Paul Palandjian" /></div>
+        <h4>Paul Palandjian</h4>
+        <div class="role">Co-founder + Advisor</div>
+        <div class="prev">CEO O'Leary Ventures</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- RAISE -->
+<section class="raise" id="raise">
+  <div class="container">
+    <span class="section-eyebrow reveal">The Raise</span>
+    <div class="raise-grid">
+      <div class="reveal">
+        <div class="raise-num">$2M</div>
+        <div class="raise-tag">Friends &amp; Enthusiasts</div>
+        <div class="raise-sub">Join us in redefining luxury protection</div>
+        <p style="color: var(--off-white); font-size: 17px; line-height: 1.65; max-width: 480px;">
+          We're opening up a focused round to the people who already understand the WonderCare thesis — collectors, operators, and friends of the firm.
+        </p>
+      </div>
+      <div class="use-funds reveal">
+        <h4>Use of Funds</h4>
+        <ul>
+          <li><span><strong>Conversion engine</strong> — go from 6% to 20% conversion on incoming demand.</span></li>
+          <li><span><strong>Asset expansion</strong> — every luxury asset class.</span></li>
+          <li><span><strong>Exclusive partnerships</strong> — retailers and manufacturers.</span></li>
+          <li><span><strong>Talent acquisition</strong> — building the operating bench.</span></li>
+          <li><span><strong>International licensing</strong> — global on-ramp.</span></li>
+          <li><span><strong>Additional services</strong> — appraisals, service, repair.</span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CLOSING -->
+<section class="closing">
+  <div class="container">
+    <div class="closing-logo">
+      <img src="Wondercare_Logo-Full-Stacked-RGB-OnDark.jpg" alt="WonderCare — Luxury Insurance" />
+    </div>
+    <div class="closing-divider"></div>
+    <h2>Let's protect what's worth protecting.</h2>
+    <p>If you'd like to learn more about the round, the partnerships, or the product — we'd love to talk.</p>
+    <div class="actions">
+      <a href="https://wondercare.com" target="_blank" rel="noopener" class="btn-primary">Visit wondercare.com</a>
+      <a href="mailto:james@wondercare.com" class="btn-secondary">Get in Touch</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <p>WonderCare · Luxury Insurance · <a href="https://wondercare.com" target="_blank" rel="noopener">wondercare.com</a></p>
+    <p style="margin-top: 6px; font-size: 11px; opacity: 0.6;">Confidential and proprietary. For prospective investors only.</p>
+  </div>
+</footer>
+
+<script>
+  // Reveal on scroll
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -50px 0px' });
+
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+  // Nav shrink on scroll
+  const nav = document.querySelector('nav');
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 30) {
+      nav.style.padding = '12px 32px';
+    } else {
+      nav.style.padding = '18px 32px';
+    }
+  });
+</script>
+
+</body>
+</html>

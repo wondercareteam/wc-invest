@@ -1,0 +1,16 @@
+{
+  "hosting": {
+    "site": "wc-invest-ftw",
+    "public": ".",
+    "ignore": [
+      "firebase.json",
+      ".firebaserc",
+      "**/.*",
+      "**/node_modules/**",
+      "__MACOSX/**",
+      ".github/**",
+      "README.md",
+      "*.zip"
+    ]
+  }
+}
