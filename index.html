@@ -5,11 +5,29 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>WonderCare — The Future of Luxury Asset Protection</title>
 <meta name="description" content="WonderCare: the tech-first insurance platform crafted for luxury asset owners, addressing the $13B gap in coverage." />
+<script>
+  // Run early so we don't flash the gate to returning visitors,
+  // and so the chosen theme is applied before paint.
+  try {
+    if (localStorage.getItem('wc_invest_unlocked')) {
+      document.documentElement.classList.add('wc-unlocked');
+    }
+    var savedTheme = localStorage.getItem('wc_theme');
+    if (savedTheme === 'light' || savedTheme === 'dark') {
+      document.documentElement.setAttribute('data-theme', savedTheme);
+    } else {
+      document.documentElement.setAttribute('data-theme', 'dark');
+    }
+  } catch (e) {
+    document.documentElement.setAttribute('data-theme', 'dark');
+  }
+</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
-  :root {
+  :root,
+  :root[data-theme="dark"] {
     --navy-deep: #060e26;
     --navy: #0a1638;
     --navy-mid: #0f1d44;
@@ -20,8 +38,50 @@
     --off-white: #e9edf5;
     --muted: #9aa3bd;
     --line: rgba(255,255,255,0.08);
+    --nav-bg: rgba(6, 14, 38, 0.85);
+    --card-bg: rgba(26, 42, 92, 0.35);
+    --card-bg-strong: rgba(26, 42, 92, 0.55);
+    --pillar-bg-1: rgba(26,42,92,0.4);
+    --pillar-bg-2: rgba(26,42,92,0.1);
+    --pillar-hover-1: rgba(230,57,70,0.05);
+    --shadow: 0 25px 70px rgba(0,0,0,0.5);
+    --shadow-lg: 0 30px 80px rgba(0,0,0,0.5);
+    --input-bg: rgba(255,255,255,0.04);
+    --input-bg-focus: rgba(255,255,255,0.06);
+    --input-border: rgba(255,255,255,0.18);
+    --btn-secondary-border: rgba(255,255,255,0.25);
+    --btn-secondary-hover-bg: rgba(255,255,255,0.05);
     --max: 1240px;
   }
+
+  :root[data-theme="light"] {
+    --navy-deep: #f7f5ef;       /* page bg — warm cream */
+    --navy: #efece4;            /* mid bg */
+    --navy-mid: #e6e2d7;        /* deeper section bg */
+    --navy-light: #ddd8ca;      /* card surface */
+    --red: #c8344a;             /* slightly deeper red for AA contrast */
+    --red-soft: #b32a3f;
+    --white: #0a1638;           /* "white" text becomes navy ink */
+    --off-white: #2a3253;       /* body text */
+    --muted: #6a7290;           /* meta / labels */
+    --line: rgba(10,22,56,0.10);
+    --nav-bg: rgba(247, 245, 239, 0.85);
+    --card-bg: rgba(255, 255, 255, 0.6);
+    --card-bg-strong: rgba(255, 255, 255, 0.75);
+    --pillar-bg-1: rgba(255,255,255,0.7);
+    --pillar-bg-2: rgba(255,255,255,0.35);
+    --pillar-hover-1: rgba(200,52,74,0.06);
+    --shadow: 0 18px 50px rgba(10, 22, 56, 0.12);
+    --shadow-lg: 0 25px 70px rgba(10, 22, 56, 0.16);
+    --input-bg: rgba(10,22,56,0.04);
+    --input-bg-focus: rgba(10,22,56,0.07);
+    --input-border: rgba(10,22,56,0.18);
+    --btn-secondary-border: rgba(10,22,56,0.25);
+    --btn-secondary-hover-bg: rgba(10,22,56,0.05);
+  }
+
+  :root { color-scheme: dark; }
+  :root[data-theme="light"] { color-scheme: light; }
 
   * { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -35,6 +95,7 @@
     overflow-x: hidden;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    transition: background 0.3s ease, color 0.3s ease;
   }
 
   a { color: inherit; text-decoration: none; }
@@ -53,11 +114,11 @@
     top: 0; left: 0; right: 0;
     z-index: 100;
     padding: 18px 32px;
-    background: rgba(6, 14, 38, 0.85);
+    background: var(--nav-bg);
     backdrop-filter: blur(14px);
     -webkit-backdrop-filter: blur(14px);
     border-bottom: 1px solid var(--line);
-    transition: padding 0.3s ease;
+    transition: padding 0.3s ease, background 0.3s ease;
   }
   nav .nav-inner {
     max-width: var(--max);
@@ -75,8 +136,43 @@
     height: 36px;
     width: auto;
     display: block;
-    mix-blend-mode: screen;
   }
+  /* Logo swap based on theme */
+  .logo-light { display: none; }
+  [data-theme="light"] .logo-dark { display: none; }
+  [data-theme="light"] .logo-light { display: block; }
+
+  /* Theme toggle */
+  .nav-actions {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+  .theme-toggle {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    border: 1px solid var(--line);
+    background: transparent;
+    color: var(--off-white);
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    transition: background 0.2s, border-color 0.2s, color 0.2s, transform 0.2s;
+  }
+  .theme-toggle:hover {
+    background: var(--input-bg);
+    border-color: var(--input-border);
+    color: var(--white);
+    transform: rotate(15deg);
+  }
+  .theme-toggle svg { width: 18px; height: 18px; display: block; }
+  .theme-toggle .icon-sun { display: none; }
+  .theme-toggle .icon-moon { display: block; }
+  [data-theme="light"] .theme-toggle .icon-sun { display: block; }
+  [data-theme="light"] .theme-toggle .icon-moon { display: none; }
   .nav-links {
     display: flex;
     gap: 30px;
@@ -120,6 +216,9 @@
       radial-gradient(ellipse at 20% 30%, rgba(26,42,92,0.6), transparent 50%),
       linear-gradient(135deg, var(--navy-deep) 0%, var(--navy) 60%, var(--navy-mid) 100%);
     z-index: 0;
+  }
+  [data-theme="light"] .hero::before {
+    background: var(--navy-deep);
   }
   .hero::after {
     content: "";
@@ -173,10 +272,6 @@
   }
   .hero-title .accent {
     color: var(--white);
-    background: linear-gradient(120deg, #ffffff 0%, #b9c4e3 100%);
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
   }
   .hero-sub {
     font-size: clamp(17px, 1.5vw, 20px);
@@ -213,7 +308,7 @@
     border-radius: 6px;
     overflow: hidden;
     aspect-ratio: 4/5;
-    box-shadow: 0 30px 80px rgba(0,0,0,0.5);
+    box-shadow: var(--shadow-lg);
   }
   .hero-image img {
     width: 100%;
@@ -338,7 +433,7 @@
     margin-top: 60px;
   }
   .pillar {
-    background: linear-gradient(180deg, rgba(26,42,92,0.4), rgba(26,42,92,0.1));
+    background: linear-gradient(180deg, var(--pillar-bg-1), var(--pillar-bg-2));
     border: 1px solid var(--line);
     padding: 38px 34px;
     border-radius: 4px;
@@ -358,7 +453,7 @@
   .pillar:hover {
     transform: translateY(-4px);
     border-color: rgba(230,57,70,0.4);
-    background: linear-gradient(180deg, rgba(230,57,70,0.05), rgba(26,42,92,0.1));
+    background: linear-gradient(180deg, var(--pillar-hover-1), var(--pillar-bg-2));
   }
   .pillar:hover::before { width: 100%; }
   .pillar h3 {
@@ -390,7 +485,7 @@
   .traction-img {
     border-radius: 6px;
     overflow: hidden;
-    box-shadow: 0 25px 70px rgba(0,0,0,0.5);
+    box-shadow: var(--shadow);
     aspect-ratio: 1/1;
   }
   .traction-img img { width: 100%; height: 100%; object-fit: cover; }
@@ -453,7 +548,7 @@
   }
   .partner-list .item {
     padding: 22px 26px;
-    background: rgba(26,42,92,0.3);
+    background: var(--card-bg);
     border-left: 3px solid var(--red);
     border-radius: 0 6px 6px 0;
   }
@@ -470,7 +565,7 @@
   .moat-img {
     border-radius: 6px;
     overflow: hidden;
-    box-shadow: 0 25px 70px rgba(0,0,0,0.5);
+    box-shadow: var(--shadow);
     aspect-ratio: 4/5;
   }
   .moat-img img { width: 100%; height: 100%; object-fit: cover; }
@@ -494,7 +589,7 @@
   .kevin-img {
     border-radius: 6px;
     overflow: hidden;
-    box-shadow: 0 25px 80px rgba(0,0,0,0.6);
+    box-shadow: var(--shadow-lg);
     background: var(--navy);
     padding: 14px;
   }
@@ -574,7 +669,7 @@
   .funnel-img {
     border-radius: 6px;
     overflow: hidden;
-    box-shadow: 0 25px 70px rgba(0,0,0,0.5);
+    box-shadow: var(--shadow);
     background: var(--navy);
   }
   .funnel-img img { width: 100%; height: auto; }
@@ -611,7 +706,7 @@
   .tam-img {
     border-radius: 6px;
     overflow: hidden;
-    box-shadow: 0 25px 70px rgba(0,0,0,0.5);
+    box-shadow: var(--shadow);
     aspect-ratio: 1/1;
   }
   .tam-img img { width: 100%; height: 100%; object-fit: cover; }
@@ -623,7 +718,7 @@
   }
   .market {
     padding: 26px 28px;
-    background: rgba(26,42,92,0.35);
+    background: var(--card-bg);
     border: 1px solid var(--line);
     border-radius: 6px;
     transition: border-color 0.3s, transform 0.3s;
@@ -660,7 +755,7 @@
   .roadmap-img {
     border-radius: 6px;
     overflow: hidden;
-    box-shadow: 0 25px 70px rgba(0,0,0,0.5);
+    box-shadow: var(--shadow);
     background: var(--navy);
     display: flex;
     align-items: center;
@@ -865,7 +960,6 @@
     width: clamp(220px, 32vw, 320px);
     height: auto;
     display: block;
-    mix-blend-mode: screen;
   }
   .closing-divider {
     width: 60px;
@@ -904,7 +998,7 @@
   .btn-primary:hover { background: var(--red-soft); transform: translateY(-2px); }
   .btn-secondary {
     padding: 16px 36px;
-    border: 1px solid rgba(255,255,255,0.25);
+    border: 1px solid var(--btn-secondary-border);
     color: var(--white);
     border-radius: 4px;
     font-weight: 600;
@@ -912,7 +1006,7 @@
     transition: border-color 0.2s, background 0.2s;
     font-size: 15px;
   }
-  .btn-secondary:hover { border-color: var(--white); background: rgba(255,255,255,0.05); }
+  .btn-secondary:hover { border-color: var(--white); background: var(--btn-secondary-hover-bg); }
 
   footer {
     padding: 32px 0;
@@ -935,14 +1029,201 @@
     opacity: 1;
     transform: translateY(0);
   }
+
+  /* ---------- EMAIL GATE ---------- */
+  html:not(.wc-unlocked) body {
+    overflow: hidden;
+    height: 100vh;
+  }
+  html.wc-unlocked .email-gate { display: none !important; }
+
+  .email-gate {
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 32px 24px;
+    background:
+      radial-gradient(ellipse at 70% 50%, rgba(230,57,70,0.18), transparent 55%),
+      radial-gradient(ellipse at 20% 30%, rgba(26,42,92,0.7), transparent 55%),
+      linear-gradient(135deg, var(--navy-deep) 0%, var(--navy) 60%, var(--navy-mid) 100%);
+    transition: opacity 0.6s ease, visibility 0.6s ease;
+  }
+  .email-gate.fade-out {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+  }
+  .gate-card {
+    width: 100%;
+    max-width: 520px;
+    padding: 56px 48px;
+    background: var(--card-bg-strong);
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    box-shadow: var(--shadow-lg);
+    text-align: center;
+    animation: gateIn 0.7s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+  }
+  @keyframes gateIn {
+    from { opacity: 0; transform: translateY(16px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .gate-logo {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 8px;
+  }
+  .gate-logo img {
+    width: clamp(180px, 50%, 240px);
+    height: auto;
+  }
+  .gate-divider {
+    width: 50px;
+    height: 2px;
+    background: var(--red);
+    margin: 18px auto 26px;
+  }
+  .gate-eyebrow {
+    color: var(--red);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    margin-bottom: 14px;
+  }
+  .gate-title {
+    color: var(--white);
+    font-size: clamp(22px, 3vw, 28px);
+    font-weight: 600;
+    line-height: 1.25;
+    letter-spacing: -0.01em;
+    margin-bottom: 14px;
+  }
+  .gate-sub {
+    color: var(--off-white);
+    font-size: 15px;
+    font-weight: 300;
+    line-height: 1.55;
+    margin-bottom: 30px;
+    max-width: 380px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .gate-form {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 22px;
+  }
+  .gate-form input[type="email"] {
+    width: 100%;
+    padding: 16px 18px;
+    background: var(--input-bg);
+    border: 1px solid var(--input-border);
+    border-radius: 4px;
+    color: var(--white);
+    font-family: inherit;
+    font-size: 15px;
+    outline: none;
+    transition: border-color 0.2s, background 0.2s;
+  }
+  .gate-form input[type="email"]:focus {
+    border-color: var(--red);
+    background: var(--input-bg-focus);
+  }
+  .gate-form input[type="email"]::placeholder {
+    color: var(--muted);
+  }
+  .gate-form button {
+    width: 100%;
+    padding: 16px;
+    background: var(--red);
+    color: var(--white);
+    border: none;
+    border-radius: 4px;
+    font-family: inherit;
+    font-size: 15px;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.2s;
+  }
+  .gate-form button:hover {
+    background: var(--red-soft);
+    transform: translateY(-1px);
+  }
+  .gate-form button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none;
+  }
+  .gate-error {
+    color: var(--red-soft);
+    font-size: 13px;
+    margin-top: -10px;
+    margin-bottom: 14px;
+    min-height: 18px;
+    text-align: left;
+    padding-left: 4px;
+  }
+  .gate-fine {
+    color: var(--muted);
+    font-size: 12px;
+    line-height: 1.5;
+    letter-spacing: 0.02em;
+  }
+  @media (max-width: 520px) {
+    .gate-card { padding: 40px 28px; }
+  }
 </style>
 </head>
 <body>
 
+<!-- ============================================================
+     EMAIL GATE
+     To collect submitted emails, set WC_COLLECTION_ENDPOINT below
+     to a Formspree URL (https://formspree.io/f/YOUR_FORM_ID),
+     a Tally URL, a Zapier/Make webhook, or your own POST endpoint.
+     If left empty, the email is stored locally and the visitor is
+     granted access — useful for testing.
+     ============================================================ -->
+<div id="email-gate" class="email-gate" role="dialog" aria-modal="true" aria-labelledby="gate-title">
+  <div class="gate-card">
+    <div class="gate-logo">
+      <img class="logo-dark" src="Wondercare_Logo-Full-Stacked-RGB-White-Transparent.png" alt="WonderCare — Luxury Insurance" />
+      <img class="logo-light" src="Wondercare_Logo-Full-Stacked-RGB-Navy-Transparent.png" alt="WonderCare — Luxury Insurance" />
+    </div>
+    <div class="gate-divider"></div>
+    <div class="gate-eyebrow">Confidential · Friends &amp; Partners Round</div>
+    <h1 class="gate-title" id="gate-title">The Future of Luxury Asset Protection</h1>
+    <p class="gate-sub">Please share your email to access the WonderCare investor materials.</p>
+    <form id="gate-form" class="gate-form" novalidate>
+      <input
+        type="email"
+        id="gate-email"
+        name="email"
+        placeholder="you@domain.com"
+        autocomplete="email"
+        spellcheck="false"
+        required
+      />
+      <div class="gate-error" id="gate-error" aria-live="polite"></div>
+      <button type="submit" id="gate-submit">Continue →</button>
+    </form>
+    <p class="gate-fine">By continuing you acknowledge that the materials on this page are confidential and intended only for prospective investors.</p>
+  </div>
+</div>
+
 <nav>
   <div class="nav-inner">
     <a href="#top" class="brand" aria-label="WonderCare home">
-      <img src="Wondercare_Logo-Full-Horiz-RGB-OnDark.jpg" alt="WonderCare — Luxury Insurance" />
+      <img class="logo-dark" src="Wondercare_Logo-Full-Horiz-RGB-White-Transparent.png" alt="WonderCare — Luxury Insurance" />
+      <img class="logo-light" src="Wondercare_Logo-Full-Horiz-RGB-Navy-Transparent.png" alt="WonderCare — Luxury Insurance" />
     </a>
     <div class="nav-links">
       <a href="#problem">Problem</a>
@@ -951,7 +1232,25 @@
       <a href="#team">Team</a>
       <a href="#raise">The Raise</a>
     </div>
-    <a href="mailto:james@wondercare.com?subject=WonderCare%20Investment%20Inquiry" class="cta-btn">Invest</a>
+    <div class="nav-actions">
+      <button id="theme-toggle" class="theme-toggle" type="button" aria-label="Toggle light/dark mode" title="Toggle theme">
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+        </svg>
+        <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <circle cx="12" cy="12" r="4.2"/>
+          <line x1="12" y1="2.5" x2="12" y2="5"/>
+          <line x1="12" y1="19" x2="12" y2="21.5"/>
+          <line x1="2.5" y1="12" x2="5" y2="12"/>
+          <line x1="19" y1="12" x2="21.5" y2="12"/>
+          <line x1="4.9" y1="4.9" x2="6.7" y2="6.7"/>
+          <line x1="17.3" y1="17.3" x2="19.1" y2="19.1"/>
+          <line x1="4.9" y1="19.1" x2="6.7" y2="17.3"/>
+          <line x1="17.3" y1="6.7" x2="19.1" y2="4.9"/>
+        </svg>
+      </button>
+      <a href="mailto:james@wondercare.com?subject=WonderCare%20Investment%20Inquiry" class="cta-btn">Invest</a>
+    </div>
   </div>
 </nav>
 
@@ -960,7 +1259,7 @@
   <div class="container">
     <div class="hero-grid">
       <div>
-        <span class="hero-eyebrow">Friends &amp; Enthusiasts Round · Apr 2026</span>
+        <span class="hero-eyebrow">Friends &amp; Partners Round · Apr 2026</span>
         <h1 class="hero-title">
           The Future of<br />
           <span class="accent">Luxury Asset Protection.</span>
@@ -1314,7 +1613,7 @@
     <div class="raise-grid">
       <div class="reveal">
         <div class="raise-num">$2M</div>
-        <div class="raise-tag">Friends &amp; Enthusiasts</div>
+        <div class="raise-tag">Friends &amp; Partners</div>
         <div class="raise-sub">Join us in redefining luxury protection</div>
         <p style="color: var(--off-white); font-size: 17px; line-height: 1.65; max-width: 480px;">
           We're opening up a focused round to the people who already understand the WonderCare thesis — collectors, operators, and friends of the firm.
@@ -1339,7 +1638,8 @@
 <section class="closing">
   <div class="container">
     <div class="closing-logo">
-      <img src="Wondercare_Logo-Full-Stacked-RGB-OnDark.jpg" alt="WonderCare — Luxury Insurance" />
+      <img class="logo-dark" src="Wondercare_Logo-Full-Stacked-RGB-White-Transparent.png" alt="WonderCare — Luxury Insurance" />
+      <img class="logo-light" src="Wondercare_Logo-Full-Stacked-RGB-Navy-Transparent.png" alt="WonderCare — Luxury Insurance" />
     </div>
     <div class="closing-divider"></div>
     <h2>Let's protect what's worth protecting.</h2>
@@ -1359,6 +1659,108 @@
 </footer>
 
 <script>
+  // ============================================================
+  // EMAIL GATE — Google Apps Script web app endpoint.
+  // Paste your deployed Apps Script URL below. It looks like:
+  //   https://script.google.com/macros/s/AKfy...abc/exec
+  // (See setup instructions in the chat that generated this file.)
+  // Leave as "" to skip remote collection (email only saved locally).
+  // ============================================================
+  const WC_COLLECTION_ENDPOINT = "https://script.google.com/macros/s/AKfycbzPxsUl6195KvQQcRfAyCuJvhxqDt6v0-58kgZezIUJtIyx2PfGQnnEXEEeUUm1OUY/exec";
+
+  const STORAGE_KEY = "wc_invest_unlocked";
+  const gate = document.getElementById("email-gate");
+  const gateForm = document.getElementById("gate-form");
+  const gateEmail = document.getElementById("gate-email");
+  const gateError = document.getElementById("gate-error");
+  const gateSubmit = document.getElementById("gate-submit");
+
+  // Already unlocked? Hide instantly. (The .wc-unlocked class is also
+  // set in <head> to prevent flash on returning visitors.)
+  if (localStorage.getItem(STORAGE_KEY)) {
+    gate.style.display = "none";
+    document.documentElement.classList.add("wc-unlocked");
+  } else {
+    // Focus the email field after the gate animates in.
+    setTimeout(() => gateEmail && gateEmail.focus(), 500);
+  }
+
+  function isValidEmail(value) {
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
+  }
+
+  function unlock() {
+    document.documentElement.classList.add("wc-unlocked");
+    gate.classList.add("fade-out");
+    setTimeout(() => { gate.style.display = "none"; }, 650);
+  }
+
+  if (gateForm) {
+    gateForm.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const email = (gateEmail.value || "").trim();
+      gateError.textContent = "";
+
+      if (!isValidEmail(email)) {
+        gateError.textContent = "Please enter a valid email address.";
+        gateEmail.focus();
+        return;
+      }
+
+      gateSubmit.disabled = true;
+      gateSubmit.textContent = "Submitting…";
+
+      // Persist locally so they aren't asked again on this device.
+      try { localStorage.setItem(STORAGE_KEY, email); } catch (err) {}
+
+      // Send to remote collection endpoint if configured.
+      // We use mode:"no-cors" + a string body (text/plain) so the request
+      // is a simple cross-origin POST with no preflight — which is what
+      // Google Apps Script web apps require. We can't read the response,
+      // but Apps Script still receives e.postData.contents server-side.
+      if (WC_COLLECTION_ENDPOINT) {
+        const payload = JSON.stringify({
+          email: email,
+          source: "WonderCare Investor Site",
+          page: window.location.href,
+          referrer: document.referrer || null,
+          userAgent: navigator.userAgent,
+          timestamp: new Date().toISOString()
+        });
+        try {
+          console.log("WonderCare gate: posting to", WC_COLLECTION_ENDPOINT);
+          await fetch(WC_COLLECTION_ENDPOINT, {
+            method: "POST",
+            mode: "no-cors",
+            body: payload
+          });
+          console.log("WonderCare gate: POST sent (response is opaque under no-cors).");
+        } catch (err) {
+          console.warn("WonderCare gate: collection POST failed:", err);
+          // Last-ditch fallback — sendBeacon doesn't fail on page unload paths.
+          try { navigator.sendBeacon(WC_COLLECTION_ENDPOINT, payload); } catch (e2) {}
+        }
+      }
+
+      unlock();
+    });
+  }
+
+  // ============================================================
+  // THEME TOGGLE — switches between dark and light, persists choice.
+  // The initial theme was already applied in the <head> script
+  // to avoid a flash of the wrong theme.
+  // ============================================================
+  const themeToggle = document.getElementById("theme-toggle");
+  if (themeToggle) {
+    themeToggle.addEventListener("click", () => {
+      const current = document.documentElement.getAttribute("data-theme") || "dark";
+      const next = current === "dark" ? "light" : "dark";
+      document.documentElement.setAttribute("data-theme", next);
+      try { localStorage.setItem("wc_theme", next); } catch (e) {}
+    });
+  }
+
   // Reveal on scroll
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
